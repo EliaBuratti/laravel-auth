@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Project;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\Request;
+use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+
+use function PHPUnit\Framework\isNull;
 
 class ProjectController extends Controller
 {
@@ -32,6 +36,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        $validated = $request->validated();
         $data = $request->all();
 
         if ($request->has('cover_image')) {
@@ -41,12 +46,11 @@ class ProjectController extends Controller
 
         $data['slug'] = Str::slug($request->title);
 
-        $validated = $request->validated();
 
+        //dd($data['project_link']);
         $new_project = Project::create($data);
-        //dd($data);
 
-        return to_route('admin.index')->with('message', 'Created sucessfully');
+        return to_route('project.index')->with('message', 'Created sucessfully');
     }
 
     /**
@@ -54,7 +58,6 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        dd($project);
         return view('admin.project.show', compact('project'));
     }
 
@@ -63,7 +66,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+
+        return view('admin.project.edit', compact('project'));
     }
 
     /**
@@ -71,7 +75,16 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->all();
+        if ($request->has('cover_image') && $project->cover_image) {
+            Storage::delete($project->cover_image);
+
+            $img_path = Storage::put('cover_image', $request->cover_image);
+            $data['cover_image'] = $img_path;
+        }
+        //dd($data);
+        $project->update($data);
+        return to_route('project.index')->with('message', 'Updated sucessfully');
     }
 
     /**
@@ -79,6 +92,14 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+
+        if (isNull($project->cover_image)) {
+            Storage::delete($project->cover_image);
+        }
+
+        //dd($project);
+        $project->delete();
+
+        return to_route('project.index')->with('message', 'Delete sucessfully');
     }
 }

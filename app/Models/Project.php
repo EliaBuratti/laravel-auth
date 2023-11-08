@@ -10,7 +10,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'slug', 'cover_image', 'skills', 'poject_link'];
+    protected $fillable = ['title', 'description', 'slug', 'cover_image', 'skills', 'project_link'];
 
     protected function cover_image(): Attribute
     {
@@ -19,7 +19,7 @@ class Project extends Model
                 if (strstr($value, 'http') !== false) {
                     return $value;
                 } else {
-                    dd($value);
+                    //dd($value);
                     return asset('storage/' . $value);
                 }
             }

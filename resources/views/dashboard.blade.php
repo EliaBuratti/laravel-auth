@@ -17,7 +17,7 @@
             <div class="comic-list mt-5">
                 <h3>List projects</h3>
                 <button class="btn btn-primary">
-                    <a class="nav-link" href="{{ route('admin.create') }}">Add project</a>
+                    <a class="nav-link" href="{{ route('project.create') }}">Add project</a>
                 </button>
 
                 <button class="btn btn-warning">
@@ -39,7 +39,7 @@
                                 <td>
                                     {{-- per link --}}
 
-                                    <img width="150" src="{{ asset('storage/' . $project->cover_image) }}"
+                                    <img width="150" src="{{ asset($project->cover_image) }}"
                                         alt="{{ $project->title }}">
 
 
@@ -48,8 +48,8 @@
                                 </td>
                                 <td>{{ $project->title }}</td>
                                 <td>
-                                    <a href="{{ route('admin.show', $project->id) }}" class="btn btn-primary">View</a>
-                                    <a href="{{ route('admin.edit', $project->id) }}" class="btn btn-secondary">Edit</a>
+                                    <a href="{{ route('project.show', $project->id) }}" class="btn btn-primary">View</a>
+                                    <a href="{{ route('project.edit', $project->id) }}" class="btn btn-secondary">Edit</a>
 
 
                                     <!-- Modal trigger button -->
@@ -78,7 +78,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">No!</button>
-                                                    <form action="{{ route('admin.destroy', $project->id) }}"
+                                                    <form action="{{ route('project.destroy', $project->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
