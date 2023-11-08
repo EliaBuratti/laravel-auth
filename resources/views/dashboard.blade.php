@@ -38,8 +38,9 @@
                                 <th scope="row">{{ $project->id }}</th>
                                 <td>
                                     {{-- per link --}}
-                                    {{ $project->cover_image }}
-                                    <img width="150" src="{{ $project->cover_image }}" alt="{{ $project->title }}">
+
+                                    <img width="150" src="{{ asset('storage/' . $project->cover_image) }}"
+                                        alt="{{ $project->title }}">
 
 
                                     {{-- <img width="150" src="{{ $project->thumb }}" alt="{{ $project->title }}"> --}}

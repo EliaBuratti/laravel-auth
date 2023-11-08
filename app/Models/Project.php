@@ -16,7 +16,7 @@ class Project extends Model
     {
         return Attribute::make(
             get: function ($value) {
-                if (strstr($value, 'https') !== false) {
+                if (strstr($value, 'http') !== false) {
                     return $value;
                 } else {
                     dd($value);
