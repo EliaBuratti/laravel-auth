@@ -15,20 +15,14 @@
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description:</label>
-                    <input type="text" class="form-control" name="description" id="description"
-                        placeholder="Description of comic" value="{{ $project->description }}">
+                    <textarea class="form-control" name="description" id="description">{{ $project->description }}</textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="cover_image" class="form-label d-block">Cover image:</label>
-                    {{-- per link --}}
-                    <img width="150" src="{{ $project->cover_image }}" alt="{{ $project->title }}">
 
+                    <img width="150" src="{{ asset('storage/' . $project->cover_image) }}" alt="{{ $project->title }}">
 
-                    {{-- <img width="150" src="{{ asset('storage/' . $comic->cover_image) }}"
-                        alt="{{ $comic->title }}"> per immagini caricate da locale --}}
-
-                    {{-- le lascio entrambe per vederle --}}
                     <input type="file" class="form-control mt-2" name="cover_image" id="cover_image"
                         placeholder="cover image">
                 </div>

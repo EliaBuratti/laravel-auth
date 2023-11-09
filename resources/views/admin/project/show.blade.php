@@ -7,7 +7,7 @@
         </div>
         <div class="my-4">
             <div class="card col-6 p-4 mx-auto">
-                <img width="250" src="{{ asset($project->cover_image) }}" class="card-img-top" alt="...">
+                <img width="250" src="{{ asset('storage/' . $project->cover_image) }}" class="card-img-top" alt="...">
                 {{-- <img style="aspect-ratio: 1 / 1.5" src="{{  }}" alt="{{ $project->title }}"> --}}
                 <div class="card-body">
                     <h5 class="card-title">{{ $project->title }}</h5>
@@ -18,7 +18,9 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Skills: </strong> {{ $project->skills }}</li>
-                    <li class="list-group-item"><strong>Project link</strong> {{ $project->project_link }}</li>
+                    <li class="list-group-item"><strong>Project link</strong>
+                        <a href="{{ $project->project_link }}" target="_blank">View Project</a>
+                    </li>
                 </ul>
             </div>
         </div>

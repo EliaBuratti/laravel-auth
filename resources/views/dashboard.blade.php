@@ -33,13 +33,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($projects as $project)
+                        @forelse ($projects as $project)
                             <tr>
                                 <th scope="row">{{ $project->id }}</th>
                                 <td>
                                     {{-- per link --}}
 
-                                    <img width="150" src="{{ asset($project->cover_image) }}"
+                                    <img width="150" src="{{ asset('storage/' . $project->cover_image) }}"
                                         alt="{{ $project->title }}">
 
 
@@ -91,7 +91,13 @@
 
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td>Nothing to see.</td>
+                            </tr>
+                        @endforelse
+
+
                     </tbody>
                 </table>
             </div>
