@@ -51,7 +51,7 @@ class ProjectController extends Controller
         //dd($data['project_link']);
         $new_project = Project::create($data);
 
-        return to_route('project.index')->with('message', 'Created sucessfully');
+        return to_route('admin.project.index')->with('message', 'Created sucessfully');
     }
 
     /**
@@ -76,6 +76,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+        $validated = $request->validated();
         $data = $request->all();
         if ($request->has('cover_image')) {
             $img_path = Storage::put('cover_image', $request->cover_image);
@@ -89,7 +90,7 @@ class ProjectController extends Controller
         }
         //dd($data);
         $project->update($data);
-        return to_route('project.index')->with('message', 'Updated sucessfully');
+        return to_route('admin.project.index')->with('message', 'Updated sucessfully');
     }
 
     /**
@@ -105,6 +106,6 @@ class ProjectController extends Controller
         //dd($project);
         $project->delete();
 
-        return to_route('project.index')->with('message', 'Delete sucessfully');
+        return to_route('admin.project.index')->with('message', 'Delete sucessfully');
     }
 }

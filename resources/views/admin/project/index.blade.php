@@ -15,11 +15,7 @@
             <div class="comic-list mt-5">
                 <h3>List projects</h3>
                 <button class="btn btn-primary">
-                    <a class="nav-link" href="{{ route('project.create') }}">Add project</a>
-                </button>
-
-                <button class="btn btn-warning">
-                    <a class="nav-link" {{-- href="{{ route('trash.index') }}" --}}>Trash bin</a>
+                    <a class="nav-link" href="{{ route('admin.project.create') }}">Add project</a>
                 </button>
                 <table class="table my-4 border">
                     <thead>
@@ -35,23 +31,19 @@
                             <tr>
                                 <th scope="row">{{ $project->id }}</th>
                                 <td>
-                                    {{-- per link --}}
-
                                     <img width="150" src="{{ asset('storage/' . $project->cover_image) }}"
                                         alt="{{ $project->title }}">
-
-
-                                    {{-- <img width="150" src="{{ $project->thumb }}" alt="{{ $project->title }}"> --}}
-                                    {{-- per immagini caricate da locale le lascio entrambe per vederle --}}
                                 </td>
                                 <td>{{ $project->title }}</td>
                                 <td>
-                                    <a href="{{ route('project.show', $project->id) }}" class="btn btn-primary">View</a>
-                                    <a href="{{ route('project.edit', $project->id) }}" class="btn btn-secondary">Edit</a>
+                                    <a href="{{ route('admin.project.show', $project->slug) }}"
+                                        class="btn btn-primary">View</a>
+                                    <a href="{{ route('admin.project.edit', $project->slug) }}"
+                                        class="btn btn-secondary">Edit</a>
 
 
                                     <!-- Modal trigger button -->
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#modalId-{{ $project->id }}">
                                         Delete
                                     </button>
@@ -76,11 +68,11 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">No!</button>
-                                                    <form action="{{ route('project.destroy', $project->id) }}"
+                                                    <form action="{{ route('admin.project.destroy', $project->slug) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-warning">Yes!</button>
+                                                        <button type="submit" class="btn btn-danger">Yes!</button>
                                                     </form>
                                                 </div>
                                             </div>

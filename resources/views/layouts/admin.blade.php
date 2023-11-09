@@ -26,48 +26,56 @@
     <body>
         <div id="app">
 
-            <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">{{ Route::currentRouteName() }}</a>
-                <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <input class="form-control form-control-dark w-100" type="text" placeholder="Search"
-                    aria-label="Search">
-                <div class="navbar-nav">
-                    <div class="nav-item text-nowrap ms-2">
-                        <a class="nav-link" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                    <!-- <ul>
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
-                                        <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+            <header class=" d-flex justify-content-between navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
+                <div class="col-2 text-center">
+                    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3"
+                        href="/">{{ Route::currentRouteName() }}</a>
+                    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="col-6">
+                    <input class="form-control form-control-dark" type="text" placeholder="Search"
+                        aria-label="Search">
+                </div>
+                <div class="col-2 text-center">
+                    <ul class="m-0 list-unstyled">
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-success dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item"
+                                        href="{{ url('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <div class="nav-item text-nowrap">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     </div>
                                 </li>
-                            </ul> -->
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
+
             </header>
+
+
 
             <div class="container-fluid vh-100">
                 <div class="row h-100">
@@ -75,13 +83,18 @@
                     aggiungere i link necessari giorno per giorno
                     -->
                     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
-                        <div class="position-sticky pt-3">
+                        <div class=" pt-3">
                             <ul class="nav flex-column">
-                                <li class="nav-item">
-
-                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'project.index' ? 'bg-secondary' : '' }}"
-                                        href="{{ route('project.index') }}">
+                                <li
+                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary rounded-3' : '' }}">
+                                    <a class="nav-link text-white" href="{{ route('admin.dashboard') }}">
                                         <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li
+                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.project.index' ? 'bg-secondary rounded-3' : '' }}">
+                                    <a class="nav-link text-white " href="{{ route('admin.project.index') }}">
+                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Project
                                     </a>
                                 </li>
 

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="action mt-4">
-            <a class="btn btn-success" href="{{ route('project.index') }}">Go back</a>
+            <a class="btn btn-success" href="{{ route('admin.project.index') }}">Go back</a>
         </div>
         <div class="my-4">
             <div class="card col-6 p-4 mx-auto">

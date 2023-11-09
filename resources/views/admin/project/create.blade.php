@@ -12,7 +12,8 @@
                 @endforeach --}}
             @endif
 
-            <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation">
+            <form action="{{ route('admin.project.store') }}" method="POST" enctype="multipart/form-data"
+                class="needs-validation">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Comic Title:</label>

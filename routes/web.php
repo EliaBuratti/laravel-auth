@@ -22,10 +22,10 @@ Route::get('/', function () {
     return view('guests.welcome', compact('projects'));
 });
 
-Route::get('/dashboard', function () {
+/* Route::get('/dashboard', function () {
     $projects =  Project::all();
     return view('admin.dashboard', compact('projects'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard'); */
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,16 +34,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // All routes will start with '/admin/...'
     //route('admin.dashboard')
 
-    //Route::resource('posts', PostController::class)->parameters([
-    //   'posts' => 'post:slug'
-    //]);
+    Route::resource('dashboard/project', ProjectController::class)->parameters([
+        'project' => 'project:slug'
+    ]);;
 });
 
-Route::resource('dashboard/project', ProjectController::class);
 
 
 require __DIR__ . '/auth.php';
