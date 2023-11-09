@@ -22,6 +22,11 @@ Route::get('/', function () {
     return view('guests.welcome', compact('projects'));
 });
 
+Route::get('/dashboard', function () {
+    $projects =  Project::all();
+    return to_route('admin.dashboard', compact('projects'));
+});
+
 /* Route::get('/dashboard', function () {
     $projects =  Project::all();
     return view('admin.dashboard', compact('projects'));

@@ -2,8 +2,11 @@
 
 @section('content')
     <main>
-        <div class="container mt-4">
+        <div class="container-fluid mt-4">
 
+            <h2 class="fs-4 text-secondary my-4">
+                {{ __('Projects list') }}
+            </h2>
 
             @if (session('message'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -12,8 +15,7 @@
                 </div>
             @endif
 
-            <div class="comic-list mt-5">
-                <h3>List projects</h3>
+            <div class="comic-list mt-3">
                 <button class="btn btn-primary">
                     <a class="nav-link" href="{{ route('admin.project.create') }}">Add project</a>
                 </button>

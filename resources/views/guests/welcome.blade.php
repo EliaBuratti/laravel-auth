@@ -1,5 +1,20 @@
 @extends('layouts.app')
 @section('content')
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5 text-center">
+            <h1 class="display-5 fw-bold">Hi!
+                @if (Auth::user())
+                    {{ Auth::user()->name }}
+                @endif
+                this is my portfolio
+            </h1>
+            <p class="fs-4">
+                You can see below all my projects. Enjoy to see it!
+            </p>
+            {{--             <button class="btn btn-primary btn-lg" type="button">Example button</button> --}}
+        </div>
+    </div>
+
     <div class="container mt-4">
         <div class="row g-4">
             @forelse ($projects as $project)
