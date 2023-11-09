@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <main>
@@ -11,8 +11,6 @@
                     <strong>Success!</strong> {{ session('message') }}
                 </div>
             @endif
-
-
 
             <div class="comic-list mt-5">
                 <h3>List projects</h3>

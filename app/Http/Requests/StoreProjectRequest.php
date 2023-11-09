@@ -23,16 +23,6 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            /*             $table->id();
-            $table->timestamps();
-            $table->string('title', 100);
-            $table->string('slug', 100)->default('');
-            $table->text('description');
-            $table->text('cover_image');
-            $table->text('skills');
-            $table->string('project_link', 255)->default(''); */
-
             'title' => ['required', 'min:3', Rule::unique('projects')->ignore($this->project),  'max:100'],
             'description' => 'required|min:3|max:5000',
             'cover_image' => 'required|image|max:600',

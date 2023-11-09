@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 use function PHPUnit\Framework\isNull;
@@ -19,8 +20,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return view('dashboard', compact('projects'));
+        $projects = DB::table('projects')->orderByDesc('id')->get();
+        return view('admin.project.index', compact('projects'));
     }
 
     /**

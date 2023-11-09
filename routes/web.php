@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 
@@ -18,18 +19,28 @@ use App\Models\Project;
 
 Route::get('/', function () {
     $projects =  Project::all();
-    return view('welcome', compact('projects'));
+    return view('guests.welcome', compact('projects'));
 });
 
 Route::get('/dashboard', function () {
     $projects =  Project::all();
-    return view('dashboard', compact('projects'));
+    return view('admin.dashboard', compact('projects'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    // All routes will start with '/admin/...'
+    //route('admin.dashboard')
+
+    //Route::resource('posts', PostController::class)->parameters([
+    //   'posts' => 'post:slug'
+    //]);
 });
 
 Route::resource('dashboard/project', ProjectController::class);
