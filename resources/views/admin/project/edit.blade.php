@@ -4,6 +4,8 @@
     <main>
         <div class="container mt-4">
 
+            <h1>Update your project!</h1>
+
             <form action="{{ route('admin.project.update', $project) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -69,7 +71,22 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Update</button>
+                <div class="mb-3">
+                    <label for="github_link" class="form-label">Github link:</label>
+                    <input type="text" class="form-control" name="github_link" id="github_link"
+                        placeholder="Link of your GitHub project page" value="{{ $project->project_link }}">
+                    @error('github_link')
+                        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <strong>Attenzione!</strong> {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="action mt-4 w-100 d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a class="btn btn-success" href="{{ route('admin.project.index') }}">Go back</a>
+                </div>
             </form>
         </div>
     </main>
