@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                         @forelse ($projects as $project)
-                            <tr>
+                            <tr class="table-primary">
                                 <th scope="row">{{ $project->id }}</th>
                                 <td>
                                     <img width="150" src="{{ asset('storage/' . $project->cover_image) }}"
@@ -80,7 +80,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </td>
                             </tr>
                         @empty
@@ -90,8 +89,10 @@
                         @endforelse
 
 
+
                     </tbody>
                 </table>
+                {{ $projects->links('pagination::bootstrap-5') }}
             </div>
 
 

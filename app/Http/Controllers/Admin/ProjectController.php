@@ -20,7 +20,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = DB::table('projects')->orderByDesc('id')->get();
+        $projects = DB::table('projects')->orderByDesc('id')->paginate(15);
         return view('admin.project.index', compact('projects'));
     }
 
