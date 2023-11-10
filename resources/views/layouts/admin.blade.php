@@ -49,7 +49,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item"
-                                        href="{{ url('admin.dashboard') }}">{{ __('Dashboard') }}</a>
+                                        href="{{ url('admin/dashboard') }}">{{ __('Dashboard') }}</a>
                                 </li>
                                 <li><a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a></li>
                                 <li>
