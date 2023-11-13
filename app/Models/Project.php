@@ -18,7 +18,7 @@ class Project extends Model
 
     protected $fillable = ['title', 'description', 'slug', 'cover_image', 'skills', 'project_link'];
 
-    protected function cover_image(): Attribute
+    /*     protected function cover_image(): Attribute
     {
         return Attribute::make(
             get: function ($value) {
@@ -30,5 +30,5 @@ class Project extends Model
                 }
             }
         );
-    }
+    } */
 }
