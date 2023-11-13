@@ -35,7 +35,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProjectRequest $request, Project $project)
     {
         $validated = $request->validated();
         $data = $request->all();
@@ -45,10 +45,11 @@ class ProjectController extends Controller
             $data['cover_image'] = $img_path;
         }
 
-        $data['slug'] = Str::slug($request->title);
+        //$data['slug'] = Str::slug($request->title);
 
+        $data['slug'] = $project->createSlug($request->title);
 
-        //dd($data['project_link']);
+        //dd($data['slug']);
         $new_project = Project::create($data);
 
         return to_route('admin.project.index')->with('message', 'Created sucessfully');
@@ -87,6 +88,10 @@ class ProjectController extends Controller
             }
 
             $data['cover_image'] = $img_path;
+        }
+
+        if (!Str::is($project->getOriginal('title'), $request->title)) {
+            $data['slug'] = $project->createSlug($request->title);
         }
         //dd($data);
         $project->update($data);
